@@ -1,0 +1,35 @@
+<header class="app-quiz-round--logo-wrapper">
+  <div class="quiz-logo"></div>
+</header>
+
+<main class="app-quiz-round--main">
+  <div class="app-quiz-round--question-wrapper">
+    <div class="app-quiz-round--question">{{quizRound.question}}</div>
+  </div>
+
+  <div class="app-quiz-round--answers-wrapper">
+    <button
+      class="app-quiz-round--answer"
+      [class.app-quiz-round--answer_selected]="isAnswerSelected(answer)"
+      [ngClass]="getClassesForConfirmedAnswer(answer)"
+      *ngFor="let answer of quizRound.answers; index as i"
+      (click)="onAnswerClick(answer)">
+      <span class="quiz-answer-pointer">
+        {{i | toLetterPointer}}
+      </span>
+      <span>
+        {{answer.title}}
+      </span>
+    </button>
+  </div>
+
+  <div
+    class="app-quiz-round--confirm"
+    *ngIf="isSomeAnswerSelected()">
+    <button
+      class="quiz-confirm"
+      (click)="confirmAnswer()">
+      Подтвердить ответ
+    </button>
+  </div>
+</main>
